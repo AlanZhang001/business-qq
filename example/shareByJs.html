@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" >
+        <meta name="format-detection" content="telephone=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title>测试QQ分享</title>
+    </head>
+    <body>
+        <p>测试QQ分享，通过js设置</p>
+        <button id='hide'>隐藏右上角菜单</button>
+        <a href="https://cloudmain.futunn.com/test/business-qq/example/shareByJs.html">在线demo</a>
+    </body>
+    <script type="text/javascript" src="../dist/index.es5.js"></script>
+    <script type="text/javascript">
+        // 配置QQ的分享
+        qq.configShare({
+            title:  '测试title-byjs-20170510',
+            desc:   '测试desc-byjs-201705-10',
+
+            // 图片最小需要200 * 200，否则分享到Qzone时会被Qzone过滤掉。
+            imgUrl: 'https://webopsstaticresource-10000538.file.myqcloud.com/nnuniversity/images/university/top.jpg',
+
+            // url必须跟页面url同一个域名，否则设置不生效。
+            link:   window.location.href
+        });
+
+        // 隐藏右上角...菜单
+        document.querySelector('#hide').addEventListener('click',function(e){
+            qq.hiddenTopRightBtn();
+        });
+    </script>
+</html>

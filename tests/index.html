@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>qq发起分享的测试</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mocha.css" />
+    <style>
+        .content{
+            margin: 60px 50px;
+        }
+        @media screen and (max-device-width: 480px){
+            .content {
+                margin: 60px 0px;
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+        <h3>注意事项：</h3>
+        <ul>
+            <li>测试用例运行在web server环境下</li>
+        </ul>
+    </div>
+    <div id="mocha"></div>
+    <script src="mocha.js"></script>
+    <script>
+        /**
+         * [setUA 设置给类ua到正式环境中]
+         * @param {[type]} uaMap [navigaror的属性map]
+         */
+        function setUA(uaMap) {
+            for (let key in uaMap) {
+                Object.defineProperty(navigator, key, {
+                    get: function() {
+                        return uaMap[key + ''];
+                    },
+                    configurable: true,
+                });
+            }
+        }
+        // 设置QQua
+        setUA({
+            'userAgent': 'Mozilla/5.0 (Linux; Android 6.0.1; MI 5s Build/MXB48T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043124 Safari/537.36 V1_AND_SQ_6.7.1_500_YYB_D QQ/6.7.1.3105 NetType/4G WebP/0.3.0 Pixel/1080'
+        });
+
+        mocha.setup('bdd');
+    </script>
+    <script type="text/javascript" src="../dist/index.es5.js"></script>
+    <script type="text/javascript" src="http://chaijs.com/chai.js"></script>
+    <script src="qq.test.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
