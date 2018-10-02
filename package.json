@@ -35,5 +35,17 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0"
-  }
+  },
+  "directories": {
+    "example": "example",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlanZhang001/business-qq.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AlanZhang001/business-qq/issues"
+  },
+  "homepage": "https://github.com/AlanZhang001/business-qq#readme"
 }

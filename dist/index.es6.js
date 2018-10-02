@@ -84,6 +84,8 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hiddenTopRightBtn", function() { return hiddenTopRightBtn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configShare", function() { return configShare; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isAppInstalled", function() { return isAppInstalled; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "launchApp", function() { return launchApp; });
 /**
  * 实现从QQ内部发起的对外分享功能
  * @module qq
@@ -97,7 +99,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * @private
  */
 let util = {
-    isQQ: /(iPad|iPhone|iPod).*? (IPad)?QQ\/([\d\.]+)/.test(ua) || /\bV1_AND_SQI?_([\d\.]+)(.*? QQ\/([\d\.]+))?/.test(ua),
+    isQQ: /(iPad|iPhone|iPod).*? (IPad)?QQ\/([\d\.]+)/.test(navigator.userAgent) || /\bV1_AND_SQI?_([\d\.]+)(.*? QQ\/([\d\.]+))?/.test(navigator.userAgent),
 
     // qqAPI地址
     qqapi: '//open.mobile.qq.com/sdk/qqapi.js?_bid=152',
@@ -174,6 +176,29 @@ let qqBusiness = {
                 hidden:true
             }
         });
+    },
+
+    /**
+     * [doCheck 判断外部App是否安装]
+     * @param  {String}   pkgName  [应用名]
+     * @param  {Function} callback [获取成功之后的回调，用于接受结果]
+     * @return {undefined}
+     */
+    doCheck: function(pkgName,callback){
+        window.mqq.invoke('app', 'isAppInstalled', { "name" : pkgName }, function(result){
+            callback && callback(result);
+        });
+    },
+
+    /**
+     * [launchApp 唤起外部app是否打开]
+     * @param  {String}   pkgName  [应用名]
+     * @return {undefined}
+     */
+    launchApp: function(pkgName) {
+        window.mqq.invoke('app', 'launchApp', {
+            name: pkgName
+        });
     }
 };
 
@@ -243,6 +268,59 @@ function hiddenTopRightBtn(){
             qqBusiness.hiddenTopRightBtn();
         });
     }
+}
+
+/**
+ * 判断外部app是否安装
+ * @function
+ * @static
+ * @param  {String}   pkgName  [应用名]
+ * @param  {Function} callback [获取成功之后的回调，用于接受结果]
+ * @since 1.0.1
+ * @returns {undefined} undefined
+ * @example
+ * qq.isAppInstalled();
+ */
+function isAppInstalled(pkgName,callback){
+    if (!util.isQQ) {
+        return;
+    }
+
+    if (window.mqq) {
+        qqBusiness.doCheck(pkgName,callback);
+    } else {
+        util.requireJs(util.qqapi, ()=>{
+            qqBusiness.doCheck(pkgName,callback);
+        });
+    }
+}
+
+/**
+ * 唤起外部App
+ * @function
+ * @param {object} config [唤起app时的配置]
+ * @param {String} config.pkgName [应用的包名]
+ * @param {Function} [config.uninstall] [没有安装app的回调]
+ * @static
+ * @since 1.0.1
+ * @returns {undefined} undefined
+ * @example
+ * qq.launchApp();
+ */
+function launchApp(config){
+    if (!util.isQQ) {
+        return;
+    }
+
+    isAppInstalled(config.pkgName, function(result) {
+        if (result !== true) {
+            config.uninstall && config.uninstall();
+            return;
+        }
+
+        qqBusiness.launchApp(config.pkgName);
+
+    });
 }
 
 
