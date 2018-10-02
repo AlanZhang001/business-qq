@@ -3,10 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.configShare = exports.hiddenTopRightBtn = undefined;
-
-var _toolBrowser = require('@futuweb/tool-browser');
-
 /**
  * 实现从QQ内部发起的对外分享功能
  * @module qq
@@ -15,13 +11,13 @@ var _toolBrowser = require('@futuweb/tool-browser');
 exports.hiddenTopRightBtn = hiddenTopRightBtn;
 exports.configShare = configShare;
 
-
 /**
  * 加载js的工具方法
  * @private
  */
+
 var util = {
-    isQQ: (0, _toolBrowser.isMobileQQ)(),
+    isQQ: /(iPad|iPhone|iPod).*? (IPad)?QQ\/([\d\.]+)/.test(ua) || /\bV1_AND_SQI?_([\d\.]+)(.*? QQ\/([\d\.]+))?/.test(ua),
 
     // qqAPI地址
     qqapi: '//open.mobile.qq.com/sdk/qqapi.js?_bid=152',
