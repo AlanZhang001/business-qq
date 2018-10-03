@@ -185,7 +185,7 @@ let qqBusiness = {
      * @return {undefined}
      */
     doCheck: function(pkgName,callback){
-        window.mqq.invoke('app', 'isAppInstalled', { "name" : pkgName }, function(result){
+        window.mqq.app.isAppInstalled(pkgName, function(result){
             callback && callback(result);
         });
     },

@@ -6,29 +6,26 @@
         <meta name="format-detection" content="telephone=no"/>
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <title>判断应用安装与否</title>
+        <title>open app</title>
     </head>
     <body>
         <input type="text" id="pgk" value="cn.futu.trader">
         是否安装:<span id="res"></span>
         <button id="check">check</button>
+        <button id="open">open</button>
     </body>
     <script type="text/javascript" src="//cloudmain.futunn.com/test/business-qq/dist/vconsole.min.js?_=1538481344562"></script>
     <script type="text/javascript" src="../dist/index.es5.js?43524523234523454567467475"></script>
+    <script type="text/javascript" src="//open.mobile.qq.com/sdk/qqapi.js?_bid=152"></script>
     <script type="text/javascript">
         /*globals VConsole*/
         var vConsole = new VConsole();
-        // 配置QQ的分享
-        qq.isAppInstalled(document.querySelector('#pgk').value,function(result){
-            alert(result);
-            document.querySelector('#res').innerHTML = JSON.stringify(result);
+
+        document.querySelector('#open').addEventListener('click',function(){
+            var v = document.querySelector('#pgk').value;
+            alert(v);
+            window.mqq.app.launchApp(v);
         });
 
-        document.querySelector('#check').addEventListener('click',function(){
-            var v = document.querySelector('#pgk').value;
-            qq.isAppInstalled(v,function(result){
-                document.querySelector('#res').innerHTML = JSON.stringify(result);
-            });
-        });
     </script>
 </html>
