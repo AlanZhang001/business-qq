@@ -87,7 +87,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
  * 实现从QQ内部发起的对外分享功能
  * @module qq
- * @author alanzhang <alanzhang@futunn.com>
+ * @author alanzhang <alanzhang001@qq.com>
  */
 
 
@@ -97,7 +97,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * @private
  */
 let util = {
-    isQQ: /(iPad|iPhone|iPod).*? (IPad)?QQ\/([\d\.]+)/.test(ua) || /\bV1_AND_SQI?_([\d\.]+)(.*? QQ\/([\d\.]+))?/.test(ua),
+    isQQ: /(iPad|iPhone|iPod).*? (IPad)?QQ\/([\d\.]+)/.test(window.navigator.userAgent) || /\bV1_AND_SQI?_([\d\.]+)(.*? QQ\/([\d\.]+))?/.test(window.navigator.userAgent),
 
     // qqAPI地址
     qqapi: '//open.mobile.qq.com/sdk/qqapi.js?_bid=152',
