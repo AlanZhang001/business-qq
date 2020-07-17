@@ -17,6 +17,10 @@
   "keywords": [
     "qq，qZone，share"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlanZhang001/business-qq.git"
+  },
   "author": "alanzhang",
   "license": "ISC",
   "devDependencies": {
