@@ -1,6 +1,6 @@
 {
   "name": "business-qq",
-  "version": "2.0.1",
+  "version": "1.0.1",
   "description": "qq发起分享",
   "main": "dist/index.es5.js",
   "scripts": {
