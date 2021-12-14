@@ -50,6 +50,9 @@ qq.hiddenTopRightBtn();
 
 ## 版本记录
 
+### v2.0.2 2020/07/18
+- readme fix
+
 ### v2.0.1 2020/07/17 
 - 修复bug
 
