@@ -25,7 +25,7 @@ qq.configShare({
 
     // 图片尺寸需要为200 * 200，否则分享到Qzone时会被Qzone过滤掉。
     // 图片地址需要待http（s）协议
-    imgUrl: 'https://webopsstaticresource-10000538.file.myqcloud.com/nnuniversity/images/university/top.jpg',
+    imgUrl: 'https://xxxx/share.jpg',
 
     // url必须跟页面url同一个域名，否则设置不生效。
     link:   window.location.href
@@ -42,7 +42,7 @@ qq.hiddenTopRightBtn();
 <!--title-->
 <meta itemprop="name" content="这是分享的标题"/>
 <!--imgUrl-->
-<meta itemprop="image" content="https://webopsstaticresource-10000538.file.myqcloud.com/nnuniversity/images/university/top.jpg" />
+<meta itemprop="image" content="https://xxxx/share.jpg" />
 <!--desc-->
 <meta name="description" itemprop="description" content="这是要分享的描述" />
 ```
