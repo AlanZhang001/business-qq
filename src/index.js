@@ -112,7 +112,7 @@ let qqBusiness = {
      *     desc:   '测试desc-byjs',
      *
      *     // 图片最小需要200 * 200，否则分享到Qzone时会被Qzone过滤掉。
-     *     imgUrl: 'https://webopsstaticresource-10000538.file.myqcloud.com/nnuniversity/images/university/top.jpg',
+     *     imgUrl: 'https://xxxx/share.jpg',
      *
      *     // url必须跟页面url同一个域名，否则设置不生效。
      *     link:   window.location.href
